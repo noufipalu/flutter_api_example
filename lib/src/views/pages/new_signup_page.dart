@@ -43,6 +43,7 @@ class _NewSignUpPageState extends State<NewSignUpPage> {
                     validator: ValidationHelpers.validateEmail),
                 AppTextFormField(
                   label: Strings.dob,
+                  validator: ValidationHelpers.checkIsNullOrEmpty,
                   onTap: () async {
                     DateTime? selectedDate = await showDatePicker(
                         context: context,
@@ -55,6 +56,8 @@ class _NewSignUpPageState extends State<NewSignUpPage> {
                       selectedDate = DateTime.now()
                           .subtract(const Duration(days: 365 * 18));
                     }
+                    _dobController.text =
+                        selectedDate.toString().substring(0, 10);
                   },
                   keyboardType: TextInputType.datetime,
                   textEditingController: _dobController,
