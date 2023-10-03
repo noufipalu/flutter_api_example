@@ -1,8 +1,24 @@
+import 'package:datainflutter/src/core/network/api_helper.dart';
+import 'package:datainflutter/src/core/network/api_response.dart';
+import 'package:datainflutter/src/model/data/user_request_model.dart';
+
 class AuthRepository {
-  Future<bool> authenticate(String email, String password) async {
-    if (email == 'noufiya@gmail.com' && password == 'Noufiya@123') {
-      return true;
-    }
-    return false;
+  Future<ApiResponse> login(String email, String password) async {
+    ApiResponse response = await ApiHelper()
+        .makePostRequest("user/login", {"email": email, "password": password});
+
+    return response;
+  }
+
+  Future<ApiResponse> signup(UserRequestModel userRequestModel) async {
+    ApiResponse response = await ApiHelper()
+        .makePostRequest("user/signup", userRequestModel.toJson());
+    return response;
+  }
+
+  Future<ApiResponse> contact(UserRequestModel userRequestModel) async {
+    ApiResponse response = await ApiHelper()
+        .makePostRequest("contact", userRequestModel.toJson());
+    return response;
   }
 }

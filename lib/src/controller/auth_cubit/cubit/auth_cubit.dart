@@ -1,4 +1,5 @@
 import 'package:datainflutter/src/controller/auth_cubit/cubit/auth_repository.dart';
+import 'package:datainflutter/src/core/network/api_response.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -13,7 +14,8 @@ class AuthCubit extends Cubit<AuthState> {
     AuthRepository authRepository = AuthRepository();
 
     try {
-      if (await authRepository.authenticate(email, password)) {
+      ApiResponse apiResponse = await authRepository.login(email, password);
+      if (apiResponse.status) {
         emit(AuthStateAuthenticated(email)); //success state
       } else {
         emit(AuthStateUnauthenticated('Inavlid Credentials'));
