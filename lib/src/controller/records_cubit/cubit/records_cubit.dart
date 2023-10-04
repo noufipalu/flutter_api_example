@@ -1,5 +1,5 @@
 import 'package:datainflutter/src/controller/records_cubit/cubit/records_repository.dart';
-import 'package:datainflutter/src/model/records_model.dart';
+import 'package:datainflutter/src/model/records/records_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 

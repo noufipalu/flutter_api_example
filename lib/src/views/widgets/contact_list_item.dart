@@ -1,4 +1,4 @@
-import 'package:datainflutter/src/model/records_model.dart';
+import 'package:datainflutter/src/model/records/records_model.dart';
 import 'package:flutter/material.dart';
 
 class ContactListItemWidget extends StatelessWidget {

@@ -1,4 +1,4 @@
-import 'package:datainflutter/src/controller/auth_cubit/cubit/cubit/auth_cubit.dart';
+import 'package:datainflutter/src/controller/auth_cubit/cubit/auth_cubit.dart';
 import 'package:datainflutter/src/core/common_widgets/app_button.dart';
 import 'package:datainflutter/src/core/constants/strings.dart';
 import 'package:datainflutter/src/core/helpers/validation_helpers.dart';
@@ -53,7 +53,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     controller: phoneController,
                     validator: ValidationHelpers.validatePhone,
                     decoration: const InputDecoration(
-                      prefixText: '+91',
+                      prefixText: '+91 ',
                       label: Text(Strings.phone),
                     ),
                   ),

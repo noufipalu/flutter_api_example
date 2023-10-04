@@ -1,5 +1,6 @@
 //Singleton Class
 
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:datainflutter/src/core/network/api_response.dart';
@@ -38,7 +39,7 @@ class ApiHelper {
       Map<String, dynamic>? queryParameters}) async {
     try {
       Response response = await _dio.post(route,
-          data: body,
+          data: jsonEncode(body),
           queryParameters: queryParameters,
           options: Options(headers: header));
 
@@ -53,7 +54,7 @@ class ApiHelper {
       Map<String, dynamic>? queryParameters}) async {
     try {
       Response response = await _dio.patch(route,
-          data: body,
+          data: jsonEncode(body),
           queryParameters: queryParameters,
           options: Options(headers: header));
 

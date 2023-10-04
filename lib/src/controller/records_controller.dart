@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:datainflutter/src/model/records_model.dart';
+import 'package:datainflutter/src/model/records/records_model.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
 class RecordsController {

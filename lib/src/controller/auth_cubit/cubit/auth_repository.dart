@@ -15,10 +15,4 @@ class AuthRepository {
         .makePostRequest("user/signup", userRequestModel.toJson());
     return response;
   }
-
-  Future<ApiResponse> contact(UserRequestModel userRequestModel) async {
-    ApiResponse response = await ApiHelper()
-        .makePostRequest("contact", userRequestModel.toJson());
-    return response;
-  }
 }
