@@ -20,6 +20,7 @@ ContactModel _$ContactModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ContactModel {
+  String? get id => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
@@ -39,7 +40,8 @@ abstract class $ContactModelCopyWith<$Res> {
       _$ContactModelCopyWithImpl<$Res, ContactModel>;
   @useResult
   $Res call(
-      {String firstName,
+      {String? id,
+      String firstName,
       String lastName,
       String address,
       String phone,
@@ -59,6 +61,7 @@ class _$ContactModelCopyWithImpl<$Res, $Val extends ContactModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? firstName = null,
     Object? lastName = null,
     Object? address = null,
@@ -66,6 +69,10 @@ class _$ContactModelCopyWithImpl<$Res, $Val extends ContactModel>
     Object? email = null,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -99,7 +106,8 @@ abstract class _$$_ContactModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String firstName,
+      {String? id,
+      String firstName,
       String lastName,
       String address,
       String phone,
@@ -117,6 +125,7 @@ class __$$_ContactModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? firstName = null,
     Object? lastName = null,
     Object? address = null,
@@ -124,6 +133,10 @@ class __$$_ContactModelCopyWithImpl<$Res>
     Object? email = null,
   }) {
     return _then(_$_ContactModel(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -152,7 +165,8 @@ class __$$_ContactModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ContactModel implements _ContactModel {
   const _$_ContactModel(
-      {required this.firstName,
+      {this.id,
+      required this.firstName,
       required this.lastName,
       required this.address,
       required this.phone,
@@ -161,6 +175,8 @@ class _$_ContactModel implements _ContactModel {
   factory _$_ContactModel.fromJson(Map<String, dynamic> json) =>
       _$$_ContactModelFromJson(json);
 
+  @override
+  final String? id;
   @override
   final String firstName;
   @override
@@ -174,7 +190,7 @@ class _$_ContactModel implements _ContactModel {
 
   @override
   String toString() {
-    return 'ContactModel(firstName: $firstName, lastName: $lastName, address: $address, phone: $phone, email: $email)';
+    return 'ContactModel(id: $id, firstName: $firstName, lastName: $lastName, address: $address, phone: $phone, email: $email)';
   }
 
   @override
@@ -182,6 +198,7 @@ class _$_ContactModel implements _ContactModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ContactModel &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
@@ -194,7 +211,7 @@ class _$_ContactModel implements _ContactModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, firstName, lastName, address, phone, email);
+      Object.hash(runtimeType, id, firstName, lastName, address, phone, email);
 
   @JsonKey(ignore: true)
   @override
@@ -212,7 +229,8 @@ class _$_ContactModel implements _ContactModel {
 
 abstract class _ContactModel implements ContactModel {
   const factory _ContactModel(
-      {required final String firstName,
+      {final String? id,
+      required final String firstName,
       required final String lastName,
       required final String address,
       required final String phone,
@@ -221,6 +239,8 @@ abstract class _ContactModel implements ContactModel {
   factory _ContactModel.fromJson(Map<String, dynamic> json) =
       _$_ContactModel.fromJson;
 
+  @override
+  String? get id;
   @override
   String get firstName;
   @override

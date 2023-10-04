@@ -1,5 +1,7 @@
 import 'package:datainflutter/src/core/network/api_helper.dart';
 import 'package:datainflutter/src/core/network/api_response.dart';
+import 'package:datainflutter/src/model/contact/contact_model.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 class ContactRepository {
   Future<ApiResponse> getAllContacts() async {
@@ -7,10 +9,21 @@ class ContactRepository {
     return response;
   }
 
-  Future<ApiResponse> createNewContact() async {
-    ApiResponse response = await ApiHelper().makePostRequest(
-      "contact",
-    );
+  Future<ApiResponse> createNewContact(ContactModel contactModel) async {
+    ApiResponse response =
+        await ApiHelper().makePostRequest("contact", contactModel.toJson());
+    return response;
+  }
+
+  Future<ApiResponse> updateContact(ContactModel contactModel) async {
+    ApiResponse response = await ApiHelper()
+        .makePatchRequest("contact/${contactModel.id}", contactModel.toJson());
+    return response;
+  }
+
+  Future<ApiResponse> deleteContact(ContactModel contactModel) async {
+    ApiResponse response =
+        await ApiHelper().makeDeleteRequest("contact/${contactModel.id}");
     return response;
   }
 }
