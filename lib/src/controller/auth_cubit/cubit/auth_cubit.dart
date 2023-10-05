@@ -16,7 +16,7 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       ApiResponse apiResponse = await authRepository.login(email, password);
       if (apiResponse.status) {
-        emit(AuthStateAuthenticated(email)); //success state
+        emit(AuthStateAuthenticated(email));
       } else {
         emit(AuthStateUnauthenticated('Inavlid Credentials'));
       }
