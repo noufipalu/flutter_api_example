@@ -1,7 +1,6 @@
 //Singleton Class
 
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:datainflutter/src/core/network/api_response.dart';
 import 'package:dio/dio.dart';

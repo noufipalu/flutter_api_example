@@ -1,5 +1,8 @@
 import 'package:datainflutter/src/controller/auth_cubit/cubit/auth_repository.dart';
 import 'package:datainflutter/src/core/network/api_response.dart';
+import 'package:datainflutter/src/core/storage/storage_helper.dart';
+import 'package:datainflutter/src/core/storage/storage_keys.dart';
+import 'package:datainflutter/src/model/data/user_request_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -16,12 +19,33 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       ApiResponse apiResponse = await authRepository.login(email, password);
       if (apiResponse.status) {
-        emit(AuthStateAuthenticated(email));
+        await StorageHelper()
+            .writeData(StorageKeys.userToken, apiResponse.token!);
+        await StorageHelper()
+            .writeData(StorageKeys.userId, apiResponse.data["_id"]);
+        emit(AuthStateAuthenticated());
       } else {
         emit(AuthStateUnauthenticated('Inavlid Credentials'));
       }
     } catch (e) {
       emit(AuthStateUnauthenticated('Authentication Error'));
+    }
+  }
+
+  Future<void> signUp(UserRequestModel userRequestModel) async {
+    emit(AuthStateLoading());
+
+    AuthRepository authRepository = AuthRepository();
+
+    try {
+      ApiResponse response = await authRepository.signup(userRequestModel);
+      if (response.status) {
+        emit(AuthStateAuthenticated());
+      } else {
+        emit(AuthStateUnauthenticated("Failed to create new user"));
+      }
+    } catch (e) {
+      emit(AuthStateUnauthenticated("An error occured"));
     }
   }
 }

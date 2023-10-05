@@ -15,10 +15,9 @@ class AuthStateLoading extends AuthState {
 }
 
 class AuthStateAuthenticated extends AuthState {
-  final String email;
-  AuthStateAuthenticated(this.email);
+  AuthStateAuthenticated();
   @override
-  List<Object?> get props => [email];
+  List<Object?> get props => [];
 }
 
 class AuthStateUnauthenticated extends AuthState {

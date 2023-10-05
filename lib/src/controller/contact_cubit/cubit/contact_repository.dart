@@ -1,7 +1,6 @@
 import 'package:datainflutter/src/core/network/api_helper.dart';
 import 'package:datainflutter/src/core/network/api_response.dart';
 import 'package:datainflutter/src/model/contact/contact_model.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
 class ContactRepository {
   Future<ApiResponse> getAllContacts() async {

@@ -1,6 +1,4 @@
-import 'package:datainflutter/src/views/pages/login_page.dart';
 import 'package:datainflutter/src/views/pages/new_signup_page.dart';
-import 'package:datainflutter/src/views/pages/signup_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
