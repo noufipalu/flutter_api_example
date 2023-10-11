@@ -1,11 +1,8 @@
-import 'dart:convert';
-
 import 'package:bloc/bloc.dart';
 import 'package:datainflutter/src/controller/contact_cubit/cubit/contact_repository.dart';
 import 'package:datainflutter/src/core/network/api_response.dart';
 import 'package:datainflutter/src/model/contact/contact_model.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 
 part 'contact_state.dart';
 
