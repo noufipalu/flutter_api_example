@@ -9,14 +9,62 @@ class ContactStateInitial extends ContactState {
   List<Object?> get props => [];
 }
 
-class ContactStateSuccess extends ContactState {
+class ContactCreateStateLoading extends ContactState {
   @override
   List<Object?> get props => [];
 }
 
-class ContactStateError extends ContactState {
-  final String error;
-  ContactStateError(this.error);
+class ContactCreateStateSuccess extends ContactState {
   @override
-  List<Object?> get props => [error];
+  List<Object?> get props => [];
+}
+
+class ContactCreateStateError extends ContactState {
+  @override
+  List<Object?> get props => [];
+}
+
+class ContactReadStateLoading extends ContactState {
+  @override
+  List<Object?> get props => [];
+}
+
+class ContactReadStateSuccess extends ContactState {
+  @override
+  List<Object?> get props => [];
+}
+
+class ContactReadStateError extends ContactState {
+  @override
+  List<Object?> get props => [];
+}
+
+class ContactUpdateStateLoading extends ContactState {
+  @override
+  List<Object?> get props => [];
+}
+
+class ContactUpdateStateSuccess extends ContactState {
+  @override
+  List<Object?> get props => [];
+}
+
+class ContactUpdateStateError extends ContactState {
+  @override
+  List<Object?> get props => [];
+}
+
+class ContactDeleteStateLoading extends ContactState {
+  @override
+  List<Object?> get props => [];
+}
+
+class ContactDeleteStateSuccess extends ContactState {
+  @override
+  List<Object?> get props => [];
+}
+
+class ContactDeleteStateError extends ContactState {
+  @override
+  List<Object?> get props => [];
 }

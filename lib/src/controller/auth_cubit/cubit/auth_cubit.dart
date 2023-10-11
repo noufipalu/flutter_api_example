@@ -34,15 +34,15 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> signUp(UserRequestModel userRequestModel) async {
     emit(AuthStateLoading());
-
     AuthRepository authRepository = AuthRepository();
-
     try {
       ApiResponse response = await authRepository.signup(userRequestModel);
       if (response.status) {
+        StorageHelper().writeData(StorageKeys.userToken, response.token!);
+        StorageHelper().writeData(StorageKeys.userId, response.data["_id"]);
         emit(AuthStateAuthenticated());
       } else {
-        emit(AuthStateUnauthenticated("Failed to create new user"));
+        emit(AuthStateUnauthenticated(response.error!));
       }
     } catch (e) {
       emit(AuthStateUnauthenticated("An error occured"));
