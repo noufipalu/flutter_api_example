@@ -30,13 +30,17 @@ class ContactReadStateLoading extends ContactState {
 }
 
 class ContactReadStateSuccess extends ContactState {
+  final List<ContactModel> data;
+  ContactReadStateSuccess({required this.data});
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [data];
 }
 
 class ContactReadStateError extends ContactState {
+  final String error;
+  ContactReadStateError({required this.error});
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [error];
 }
 
 class ContactUpdateStateLoading extends ContactState {
@@ -65,6 +69,8 @@ class ContactDeleteStateSuccess extends ContactState {
 }
 
 class ContactDeleteStateError extends ContactState {
+  final String error;
+  ContactDeleteStateError({required this.error});
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [error];
 }
