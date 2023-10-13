@@ -1,4 +1,4 @@
-import 'package:datainflutter/src/views/pages/new_signup_page.dart';
+import 'package:datainflutter/src/views/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -8,7 +8,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const NewSignUpPage(),
+      home: const LoginPage(),
     );
   }
 }

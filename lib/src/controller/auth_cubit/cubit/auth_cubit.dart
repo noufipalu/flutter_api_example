@@ -25,7 +25,7 @@ class AuthCubit extends Cubit<AuthState> {
             .writeData(StorageKeys.userId, apiResponse.data["_id"]);
         emit(AuthStateAuthenticated());
       } else {
-        emit(AuthStateUnauthenticated('Inavlid Credentials'));
+        emit(AuthStateUnauthenticated(apiResponse.error!));
       }
     } catch (e) {
       emit(AuthStateUnauthenticated('Authentication Error'));

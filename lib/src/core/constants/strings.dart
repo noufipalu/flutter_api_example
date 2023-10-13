@@ -7,4 +7,6 @@ class Strings {
   static const String confrimPassword = 'Confirm Password: ';
   static const String login = 'Login';
   static const String signup = 'Sign Up';
+  static const String newUser = 'New User?';
+  static const String error = 'Authentication Error';
 }

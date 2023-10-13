@@ -31,6 +31,7 @@ class _NewSignUpPageState extends State<NewSignUpPage> {
         child: Form(
           key: _formKey,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               AppTextFormField(
                   label: Strings.name,

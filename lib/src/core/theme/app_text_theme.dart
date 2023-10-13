@@ -10,6 +10,6 @@ class AppTextTheme {
   static const TextStyle h3TextStyle =
       TextStyle(fontSize: 12, fontWeight: FontWeight.w500);
 
-  static const TextStyle bodyTextStyle =
-      TextStyle(fontSize: 12, fontWeight: FontWeight.w300);
+  static const TextStyle bodyTextStyle = TextStyle(
+      fontSize: 12, fontWeight: FontWeight.w400, fontFamily: 'Brush Script');
 }
