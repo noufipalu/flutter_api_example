@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:bloc/bloc.dart';
 import 'package:datainflutter/src/controller/contact_cubit/cubit/contact_repository.dart';
+import 'package:datainflutter/src/core/constants/strings.dart';
 import 'package:datainflutter/src/core/network/api_response.dart';
 import 'package:datainflutter/src/model/contact/contact_model.dart';
 import 'package:equatable/equatable.dart';
@@ -18,10 +21,10 @@ class ContactCubit extends Cubit<ContactState> {
       if (response.status) {
         emit(ContactCreateStateSuccess());
       } else {
-        emit(ContactCreateStateError());
+        emit(ContactCreateStateError(error: response.error!));
       }
     } catch (e) {
-      emit(ContactCreateStateError());
+      emit(const ContactCreateStateError(error: "An error occured"));
     }
   }
 
@@ -39,7 +42,7 @@ class ContactCubit extends Cubit<ContactState> {
         emit(ContactReadStateError(error: response.error!));
       }
     } catch (e) {
-      emit(ContactReadStateError(error: "An error occured"));
+      emit(const ContactReadStateError(error: "An error occured"));
     }
   }
 
@@ -52,10 +55,10 @@ class ContactCubit extends Cubit<ContactState> {
       if (response.status) {
         emit(ContactUpdateStateSuccess());
       } else {
-        emit(ContactUpdateStateError());
+        emit(const ContactUpdateStateError(error: Strings.error));
       }
     } catch (e) {
-      emit(ContactUpdateStateError());
+      emit(const ContactUpdateStateError(error: "An error occured"));
     }
   }
 
@@ -71,7 +74,7 @@ class ContactCubit extends Cubit<ContactState> {
         emit(ContactDeleteStateError(error: response.error!));
       }
     } catch (e) {
-      emit(ContactDeleteStateError(error: "An error occured"));
+      emit(const ContactDeleteStateError(error: "An error occured"));
     }
   }
 }

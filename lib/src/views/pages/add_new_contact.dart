@@ -83,22 +83,28 @@ class _AddNewContactPageState extends State<AddNewContactPage> {
                       if (state is ContactCreateStateSuccess) {
                         Fluttertoast.showToast(
                             msg: Strings.contactCreationSuccess);
+                        Navigator.pop(context);
                       } else if (state is ContactCreateStateError) {
-                        Fluttertoast.showToast(
-                            msg: Strings.contactCreationFailed);
+                        Fluttertoast.showToast(msg: state.error);
                       }
                     },
                     builder: (context, state) {
-                      ContactModel contactModel = ContactModel(
-                        firstName: _fnameController.text.trim(),
-                        lastName: _lnameController.text.trim(),
-                        address: _addressController.text.trim(),
-                        phone: _phoneController.text.trim(),
-                        email: _emailController.text.trim(),
-                      );
+                      if (state is ContactCreateStateLoading) {
+                        return const CircularProgressIndicator();
+                      }
                       return AppButton(
                         buttonTitle: Strings.save,
                         onPressed: () {
+                          if (!(_formKey.currentState?.validate() ?? true)) {
+                            return;
+                          }
+                          ContactModel contactModel = ContactModel(
+                            firstName: _fnameController.text.trim(),
+                            lastName: _lnameController.text.trim(),
+                            address: _addressController.text.trim(),
+                            phone: _phoneController.text.trim(),
+                            email: _emailController.text.trim(),
+                          );
                           context
                               .read<ContactCubit>()
                               .createContact(contactModel);
