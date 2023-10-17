@@ -2,6 +2,7 @@ import 'package:datainflutter/src/controller/contact_cubit/cubit/contact_cubit.d
 import 'package:datainflutter/src/core/common_widgets/app_button.dart';
 import 'package:datainflutter/src/core/constants/strings.dart';
 import 'package:datainflutter/src/model/contact/contact_model.dart';
+import 'package:datainflutter/src/views/pages/add_new_contact.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -19,6 +20,20 @@ class _NewContactPageState extends State<NewContactPage> {
     return BlocProvider(
       create: (context) => ContactCubit()..readContact(),
       child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const AddNewContactPage(),
+              ),
+            ).then(
+              (value) {
+                context.read<ContactCubit>().readContact();
+              },
+            );
+          },
+        ),
         body: SafeArea(
           child: BlocConsumer<ContactCubit, ContactState>(
             listener: (context, state) {
