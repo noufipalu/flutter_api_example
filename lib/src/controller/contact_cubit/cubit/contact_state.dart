@@ -31,14 +31,14 @@ class ContactReadStateLoading extends ContactState {
 
 class ContactReadStateSuccess extends ContactState {
   final List<ContactModel> data;
-  ContactReadStateSuccess({required this.data});
+  const ContactReadStateSuccess({required this.data});
   @override
   List<Object?> get props => [data];
 }
 
 class ContactReadStateError extends ContactState {
   final String error;
-  ContactReadStateError({required this.error});
+  const ContactReadStateError({required this.error});
   @override
   List<Object?> get props => [error];
 }

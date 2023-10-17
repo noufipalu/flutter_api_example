@@ -3,6 +3,7 @@ import 'package:datainflutter/src/core/common_widgets/app_button.dart';
 import 'package:datainflutter/src/core/constants/strings.dart';
 import 'package:datainflutter/src/core/helpers/validation_helpers.dart';
 import 'package:datainflutter/src/core/theme/app_text_theme.dart';
+import 'package:datainflutter/src/views/pages/new_contact_page.dart';
 import 'package:datainflutter/src/views/pages/new_signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,6 +25,9 @@ class _LoginPageState extends State<LoginPage> {
     return BlocProvider(
       create: (context) => AuthCubit(),
       child: Scaffold(
+        appBar: AppBar(
+          title: const Text(Strings.login),
+        ),
         body: SafeArea(
           child: Form(
             key: _formKey,
@@ -56,7 +60,12 @@ class _LoginPageState extends State<LoginPage> {
                   BlocListener<AuthCubit, AuthState>(
                     listener: (context, state) {
                       if (state is AuthStateAuthenticated) {
-                        // TODO: Implement the logic
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const NewContactPage(),
+                          ),
+                        );
                         return;
                       }
                       if (state is AuthStateUnauthenticated) {

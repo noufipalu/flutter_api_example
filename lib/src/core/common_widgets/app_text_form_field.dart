@@ -25,8 +25,9 @@ class AppTextFormField extends StatelessWidget {
       onTap: onTap,
       keyboardType: keyboardType ?? TextInputType.name,
       decoration: InputDecoration(
-          labelText: label,
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(6))),
+        labelText: label,
+        // border: OutlineInputBorder(borderRadius: BorderRadius.circular(6),
+      ),
     );
   }
 }
