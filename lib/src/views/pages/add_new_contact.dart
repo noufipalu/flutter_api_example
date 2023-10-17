@@ -1,8 +1,12 @@
+import 'package:datainflutter/src/controller/contact_cubit/cubit/contact_cubit.dart';
 import 'package:datainflutter/src/core/common_widgets/app_button.dart';
 import 'package:datainflutter/src/core/common_widgets/app_text_form_field.dart';
 import 'package:datainflutter/src/core/constants/strings.dart';
 import 'package:datainflutter/src/core/helpers/validation_helpers.dart';
+import 'package:datainflutter/src/model/contact/contact_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class AddNewContactPage extends StatefulWidget {
   const AddNewContactPage({super.key});
@@ -21,62 +25,89 @@ class _AddNewContactPageState extends State<AddNewContactPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(Strings.newcontact),
-      ),
-      body: SafeArea(
-        child: Form(
-          key: _formKey,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                AppTextFormField(
-                  label: Strings.fname,
-                  textEditingController: _fnameController,
-                  validator: ValidationHelpers.validateName,
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                AppTextFormField(
-                  label: Strings.lname,
-                  textEditingController: _lnameController,
-                  validator: ValidationHelpers.validateName,
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                AppTextFormField(
-                  label: Strings.email,
-                  textEditingController: _fnameController,
-                  validator: ValidationHelpers.validateEmail,
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                AppTextFormField(
-                  label: Strings.phone,
-                  textEditingController: _phoneController,
-                  validator: ValidationHelpers.validatePhone,
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                AppTextFormField(
-                  label: Strings.address,
-                  textEditingController: _addressController,
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                AppButton(
-                  buttonTitle: Strings.save,
-                  onPressed: () {},
-                ),
-              ],
+    return BlocProvider(
+      create: (context) => ContactCubit(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text(Strings.newcontact),
+        ),
+        body: SafeArea(
+          child: Form(
+            key: _formKey,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  AppTextFormField(
+                    label: Strings.fname,
+                    textEditingController: _fnameController,
+                    validator: ValidationHelpers.validateName,
+                  ),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  AppTextFormField(
+                    label: Strings.lname,
+                    textEditingController: _lnameController,
+                    validator: ValidationHelpers.validateName,
+                  ),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  AppTextFormField(
+                    label: Strings.email,
+                    textEditingController: _emailController,
+                    validator: ValidationHelpers.validateEmail,
+                  ),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  AppTextFormField(
+                    label: Strings.phone,
+                    textEditingController: _phoneController,
+                    validator: ValidationHelpers.validatePhone,
+                  ),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  AppTextFormField(
+                    label: Strings.address,
+                    textEditingController: _addressController,
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  BlocConsumer<ContactCubit, ContactState>(
+                    listener: (context, state) {
+                      if (state is ContactCreateStateSuccess) {
+                        Fluttertoast.showToast(
+                            msg: Strings.contactCreationSuccess);
+                      } else if (state is ContactCreateStateError) {
+                        Fluttertoast.showToast(
+                            msg: Strings.contactCreationFailed);
+                      }
+                    },
+                    builder: (context, state) {
+                      ContactModel contactModel = ContactModel(
+                        firstName: _fnameController.text.trim(),
+                        lastName: _lnameController.text.trim(),
+                        address: _addressController.text.trim(),
+                        phone: _phoneController.text.trim(),
+                        email: _emailController.text.trim(),
+                      );
+                      return AppButton(
+                        buttonTitle: Strings.save,
+                        onPressed: () {
+                          context
+                              .read<ContactCubit>()
+                              .createContact(contactModel);
+                        },
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),

@@ -4,6 +4,7 @@ import 'package:datainflutter/src/core/constants/strings.dart';
 import 'package:datainflutter/src/model/contact/contact_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class NewContactPage extends StatefulWidget {
   const NewContactPage({super.key});
@@ -21,10 +22,16 @@ class _NewContactPageState extends State<NewContactPage> {
         body: SafeArea(
           child: BlocConsumer<ContactCubit, ContactState>(
             listener: (context, state) {
-              // TODO: implement listener
+              if (state is ContactDeleteStateSuccess) {
+                Fluttertoast.showToast(msg: Strings.contactDeleteSuccess);
+                context.read<ContactCubit>().readContact();
+              } else if (state is ContactDeleteStateError) {
+                Fluttertoast.showToast(msg: Strings.contactDeletionFailed);
+              }
             },
             builder: (context, state) {
-              if (state is ContactReadStateLoading) {
+              if (state is ContactReadStateLoading ||
+                  state is ContactDeleteStateLoading) {
                 return const CircularProgressIndicator();
               }
               if (state is ContactReadStateError) {
@@ -50,7 +57,11 @@ class _NewContactPageState extends State<NewContactPage> {
                       title: Text(contacts[index].firstName),
                       subtitle: Text(contacts[index].email),
                       trailing: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          context
+                              .read<ContactCubit>()
+                              .deleteContact(contacts[index]);
+                        },
                         icon: const Icon(Icons.delete),
                       ),
                     );

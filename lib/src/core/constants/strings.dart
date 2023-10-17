@@ -18,4 +18,8 @@ class Strings {
   static const String lname = 'Last Name: ';
   static const String address = 'Address: ';
   static const String save = 'Save Contact';
+  static const String contactDeleteSuccess = 'Contact deleted successfully';
+  static const String contactDeletionFailed = 'Contact deletion failed';
+  static const String contactCreationSuccess = 'Contact created successfully';
+  static const String contactCreationFailed = 'Failed to create new contact';
 }
