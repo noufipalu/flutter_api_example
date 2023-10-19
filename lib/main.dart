@@ -1,9 +1,9 @@
-import 'package:datainflutter/src/views/pages/add_new_contact.dart';
+import 'package:datainflutter/src/core/network/api_helper.dart';
 import 'package:datainflutter/src/views/pages/login_page.dart';
-import 'package:datainflutter/src/views/pages/new_contact_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  ApiHelper().initDio();
   runApp(const MyApp());
 }
 

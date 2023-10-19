@@ -108,6 +108,7 @@ class _AddNewContactPageState extends State<AddNewContactPage> {
                           context
                               .read<ContactCubit>()
                               .createContact(contactModel);
+                          context.read<ContactCubit>().readContact();
                         },
                       );
                     },

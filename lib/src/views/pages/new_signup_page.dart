@@ -147,7 +147,9 @@ class _NewSignUpPageState extends State<NewSignUpPage> {
                     },
                     builder: (context, state) {
                       if (state is AuthStateLoading) {
-                        return const CircularProgressIndicator();
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
                       }
                       return AppButton(
                         buttonTitle: Strings.signup,

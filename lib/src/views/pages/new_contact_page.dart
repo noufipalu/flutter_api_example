@@ -21,6 +21,7 @@ class _NewContactPageState extends State<NewContactPage> {
       create: (context) => ContactCubit()..readContact(),
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add),
           onPressed: () {
             Navigator.push(
               context,

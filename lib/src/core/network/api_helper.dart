@@ -3,6 +3,7 @@ import 'package:datainflutter/src/core/network/api_response.dart';
 import 'package:datainflutter/src/core/storage/storage_helper.dart';
 import 'package:datainflutter/src/core/storage/storage_keys.dart';
 import 'package:dio/dio.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class ApiHelper {
   static final ApiHelper _instance = ApiHelper._internal();
@@ -18,6 +19,10 @@ class ApiHelper {
       receiveTimeout: const Duration(minutes: 2),
     ),
   );
+
+  initDio() {
+    _dio.interceptors.add(PrettyDioLogger());
+  }
 
   Future<ApiResponse> makeGetRequest(String route,
       {Map<String, dynamic>? header,
