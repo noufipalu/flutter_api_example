@@ -48,10 +48,12 @@ class ApiHelper {
       Map<String, dynamic> defaultHeaders = await getEssentialHeaders();
       defaultHeaders.addAll(header ?? {});
 
-      Response response = await _dio.post(route,
-          data: jsonEncode(body),
-          queryParameters: queryParameters,
-          options: Options(headers: header));
+      Response response = await _dio.post(
+        route,
+        data: jsonEncode(body),
+        queryParameters: queryParameters,
+        options: Options(headers: header),
+      );
 
       return ApiResponse.fromJSON(response.data);
     } catch (e) {
